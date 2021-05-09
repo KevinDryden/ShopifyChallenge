@@ -1,0 +1,20 @@
+
+{%extends 'Base.html'%}
+
+{% block content %}
+{% load static %}
+{% if user.is_authenticated %}
+<a href="{% url 'Manage' %}">
+  <h3>Manage Your Images</h1>
+</a>
+{% else%}
+<h3>Some features may be disabled if you are not logged in</h3>
+{% endif %}
+{% for image in Images %}
+<p>{{image.Name}}</p>
+<img src="../{{image.File}}" alt="{{image.Name}}">
+<p>Uploaded by: {{image.Owner.username}}</p>
+<p>Date Uploaded: {{image.UploadDate}}</p>
+
+{% endfor %}
+{% endblock %}
